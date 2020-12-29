@@ -1,0 +1,11 @@
+<h1>Datos recibidos:</h1>
+{% for data in elementos %}
+<p>Humedad: {{data.Humedad}}</p>
+<p>Temperatura: {{data.Temperatura}}</p>
+<p>Calor: {{data.Calor}}</p>
+<p>Concentración: {{data.Concentracion}}</p>
+<p>Humo: {{data.SensorHumo}}</p>
+<p>Metano: {{data.SensorMetano}}</p>
+<p>Fecha: {{data.fecha}}</p>
+---------------------------
+{% endfor %}

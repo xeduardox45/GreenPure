@@ -4,6 +4,8 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from .models import Datos
 from .serializers import DatosSerializer
+from .services import *
+from django.shortcuts import render
 
 class JSONResponse(HttpResponse):
     """
@@ -55,3 +57,10 @@ def Dato_detail(request, pk):
     elif request.method == 'DELETE':
         Datos.delete()
         return HttpResponse(status=204)
+
+def humedad(request):
+    elementos = generate_request()
+    context = {
+        "elementos": elementos
+    }
+    return render(request, 'index.html', context)

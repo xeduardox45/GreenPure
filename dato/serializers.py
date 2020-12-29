@@ -5,7 +5,7 @@ from .models import Datos
 class DatosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Datos
-        fields = ('id', 'Ubicacion', 'Temperatura', 'Calor', 'Concentracion', 'SensorHumo', 'SensorMetano', 'fecha')
+        fields = ('__all__')
 
     def create(self, validated_data):
         """
