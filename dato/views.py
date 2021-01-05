@@ -4,7 +4,6 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from .models import Datos
 from .serializers import DatosSerializer
-from .services import *
 from django.shortcuts import render
 
 class JSONResponse(HttpResponse):
@@ -59,7 +58,7 @@ def Dato_detail(request, pk):
         return HttpResponse(status=204)
 
 def humedad(request):
-    elementos = generate_request()
+    elementos = Datos.objects.all()
     context = {
         "elementos": elementos
     }
