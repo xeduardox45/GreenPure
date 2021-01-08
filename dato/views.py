@@ -26,7 +26,7 @@ def Datos_list(request):
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = DatasSerializer(data=data)
+        serializer = DatosSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JSONResponse(serializer.data, status=201)
