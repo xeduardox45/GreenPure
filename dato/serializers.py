@@ -22,3 +22,31 @@ class DatosSerializer(serializers.ModelSerializer):
         instance.fecha = validated_data.get('fecha', instance.fecha)
         instance.save()
         return instance
+
+class CaracteristicasSerializer(serializers.Serializer):
+    latitud = serializers.DecimalField(max_digits=10, decimal_places=7, default=0)
+    longitud = serializers.DecimalField(max_digits=10, decimal_places=7, default=0)
+    calidad = serializers.DecimalField(max_digits=6, decimal_places=2, default=0)
+    hora = serializers.TimeField()
+    humedad = serializers.DecimalField(max_digits=6, decimal_places=2, default=0)
+    temperatura = serializers.DecimalField(max_digits=6, decimal_places=2, default=0)
+    calor = serializers.DecimalField(max_digits=6, decimal_places=2, default=0)
+    concentracion = serializers.DecimalField(max_digits=6, decimal_places=2, default=0)
+    sensorHumo = serializers.BooleanField()
+    sensorMetano = serializers.BooleanField()
+
+class ElementosSerializer(serializers.Serializer):
+    distrito = serializers.CharField(max_length=100)
+    datos = serializers.ListField(
+        child=CaracteristicasSerializer()
+    )
+
+class DatosResumenSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    fecha = serializers.DateField()
+    pais = serializers.CharField(max_length=100)
+    ciudad = serializers.CharField(max_length=100)
+    calidadAVG = serializers.IntegerField()
+    ubicaciones = serializers.ListField(
+        child=ElementosSerializer()
+    )
